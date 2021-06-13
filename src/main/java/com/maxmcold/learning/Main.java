@@ -2,14 +2,15 @@ package com.maxmcold.learning;
 import com.maxmcold.learning.array.GameEntry;
 import com.maxmcold.learning.array.MeetGame;
 import com.maxmcold.learning.array.Scoreboard;
+import com.maxmcold.learning.list.CircularlyLinkedList;
 import com.maxmcold.learning.list.Node;
 import com.maxmcold.learning.list.SinglyLinkedList;
 
 public class Main {
 
     public static void main(String args[]){
-        //list(args);
-        array(args);
+        list(args);
+        //array(args);
 
 
     }
@@ -21,15 +22,40 @@ public class Main {
         sll.addFirst("D");
         sll.addFirst("E");
         sll.addFirst("F");
+        sll.addLast("Chiudi");
+        sll.addFirst("Apri");
+
         int i = sll.getSize();
         Node<String> current = sll.getHead();
-        while (i-->0){
+        while (current != null){
 
-            System.out.println(current.getElement());
+            Logger.log(current.getElement());
             current = current.getNext();
 
 
         }
+        Logger.log("head: " + sll.getHead().getElement()+"\n");
+        Logger.log("next from head: " + sll.getHead().getNext().getElement()+"\n");
+
+
+        CircularlyLinkedList<String> cll = new CircularlyLinkedList<>();
+
+        cll.addFirst("Ciccio");
+        cll.addFirst("Bacicchio");
+        cll.addFirst("Luricchio");
+
+        int k = 0;
+
+        Node<String> cursor = cll.getTail();
+
+        while (cursor != null && k++ <30){
+
+            Logger.log(cursor.getElement()+"\n");
+            cursor = cursor.getNext();
+        }
+        if (k>=30)
+            Logger.log("reached max loop count: "+k+"\n");
+
     }
 
     private static void array(String[] args){
@@ -53,12 +79,7 @@ public class Main {
         sb.add(ge8);
 
         Logger.log(sb.toString());
-        /*
-        GameEntry[] ge = sb.equalScore();
-        for(int i =0;i<ge.length;System.out.println(ge[i++]));
-        //System.out.println(sb.equalScore().toString());
-        System.out.println(sb.toString());
-        */
+
         MeetGame mg = new MeetGame(sb);
         mg.run();
         Logger.log("MeetGame:\n"+sb.toString());

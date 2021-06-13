@@ -15,7 +15,7 @@ public class Scoreboard {
         int newScore = e.getScore();
 
         if (numEntries < board.length || newScore > board[numEntries-1].getScore()){
-            if (numEntries < board.length)
+            if (numEntries <board.length)
                 numEntries++;
             int j = numEntries -1;
             while (j > 0 && board[j-1].getScore() < newScore){
